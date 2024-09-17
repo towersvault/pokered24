@@ -55,19 +55,7 @@ GetAnimationSpeed:
 	ld bc, $10
 	ld a, [wCurrentMenuItem]
 	call AddNTimes
-	ld c, ICONOFFSET
-	ld a, [hl]
-	cp ICON_BALL << 2
-	jr z, .editCoords
-	cp ICON_HELIX << 2
-	jr nz, .editTileIDS
-; ICON_BALL and ICON_HELIX only shake up and down
-.editCoords
-	dec hl
-	dec hl ; dec hl to the OAM y coord
-	ld c, $1 ; amount to increase the y coord by
-; otherwise, load a second sprite frame
-.editTileIDS
+	ld c, $2
 	ld b, $4
 	ld de, $4
 .loop
@@ -86,7 +74,7 @@ GetAnimationSpeed:
 ; that each frame lasts for green HP, yellow HP, and red HP in order.
 ; On the naming screen, the yellow HP speed is always used.
 PartyMonSpeeds:
-	db 5, 16, 32
+	db 10, 24, 32
 
 LoadMonPartySpriteGfx:
 ; Load mon party sprite tile patterns into VRAM during V-blank.

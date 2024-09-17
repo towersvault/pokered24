@@ -307,6 +307,9 @@ StartMenu_Item::
 	call PrintText
 	jr .exitMenu
 .notInCableClubRoom
+	ld hl, wFlags_0xcd60
+	set 2, [hl]
+	res 4, [hl]
 	ld bc, wNumBagItems
 	ld hl, wListPointer
 	ld a, c
@@ -319,10 +322,14 @@ StartMenu_Item::
 	ld a, [wBagSavedMenuItem]
 	ld [wCurrentMenuItem], a
 	call DisplayListMenuID
+	jp nz, .sortItems
 	ld a, [wCurrentMenuItem]
 	ld [wBagSavedMenuItem], a
 	jr nc, .choseItem
 .exitMenu
+	ld hl, wFlags_0xcd60
+	res 2, [hl]
+	res 4, [hl]
 	call LoadScreenTilesFromBuffer2 ; restore saved screen
 	call LoadTextBoxTilePatterns
 	call UpdateSprites
@@ -436,6 +443,9 @@ StartMenu_Item::
 	ld hl, wNumBagItems
 	call TossItem
 .tossZeroItems
+	jp ItemMenuLoop
+.sortItems
+	callfar SortItems
 	jp ItemMenuLoop
 
 CannotUseItemsHereText:

@@ -127,6 +127,7 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/hidden_objects.asm"
 INCLUDE "home/predef_text.asm"
 
+INCLUDE "custom_funcs/func_overworld.asm"
 
 ; Note: this saves rSVBK before calling an interrupt. It would also make sense to save
 ; rVBK. However, doing that would break the code that fixes the ss anne's palettes on

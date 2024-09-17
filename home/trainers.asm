@@ -100,6 +100,14 @@ TalkToTrainer::
 	ld a, c
 	and a
 	jr z, .trainerNotYetFought     ; test trainer's flag
+	
+	;---------------------------------------------------------------------------------
+	; @towersvault
+	; Ported the following over from Pokemon Shin Red to allow for rematching trainers
+	farcall TrainerRematch
+	jr nz, .trainerNotYetFought
+	;---------------------------------------------------------------------------------
+
 	ld a, $6
 	call ReadTrainerHeaderInfo     ; print after battle text
 	jp PrintText

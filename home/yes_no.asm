@@ -5,6 +5,13 @@ YesNoChoice::
 	call InitYesNoTextBoxParameters
 	jr DisplayYesNoChoice
 
+; @towersvault:
+; Ported this over from Pokemon Shin Red
+NoYesChoice::
+	call SaveScreenTilesToBuffer1
+	call InitNoYesTextBoxParameters
+	jr DisplayYesNoChoice
+
 TwoOptionMenu:: ; unreferenced
 	ld a, TWO_OPTION_MENU
 	ld [wTextBoxID], a
@@ -16,6 +23,15 @@ InitYesNoTextBoxParameters::
 	ld [wTwoOptionMenuID], a
 	hlcoord 14, 7
 	lb bc, 8, 15
+	ret
+
+; @towersvault:
+; Ported this over from Pokemon Shin Red
+InitNoYesTextBoxParameters::
+	ld a, NO_YES_MENU
+	ld [wTwoOptionMenuID], a
+	coord hl, 14, 7
+	ld bc, $80f
 	ret
 
 YesNoChoicePokeCenter::

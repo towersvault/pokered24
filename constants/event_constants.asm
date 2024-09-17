@@ -772,6 +772,10 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	const_skip 8
 	const EVENT_BEAT_ARTICUNO
 
+; Other events
+	const_next $9E0
+	const EVENT_REMATCH_DELAY
+
 ; End of events
 	const_next $A00
 DEF NUM_EVENTS EQU const_value

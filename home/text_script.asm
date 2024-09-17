@@ -153,6 +153,12 @@ PokemartGreetingText::
 	text_far _PokemartGreetingText
 	text_end
 
+; @towersvault:
+; Ported this over from Pokemon Shin Red
+RematchTrainerText::
+	text_far _OneMoreGoSlotMachineText
+	text_end
+
 LoadItemList::
 	ld a, 1
 	ld [wUpdateSpritesEnabled], a

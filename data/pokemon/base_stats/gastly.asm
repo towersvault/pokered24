@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_GASTLY ; pokedex id
 
 	db  30,  35,  30,  80, 100
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw GastlyPicFront, GastlyPicBack
 
-	db LICK, CONFUSE_RAY, NIGHT_SHADE, NO_MOVE ; level 1 learnset
+	db LICK, CONFUSE_RAY, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

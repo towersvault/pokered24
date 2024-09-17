@@ -1,6 +1,8 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_MUK ; pokedex id
 
-	db 105, 105,  75,  50,  65
+	db 105, 105,  75,  50,  85
 	;   hp  atk  def  spd  spc
 
 	db POISON, POISON ; type
@@ -14,11 +16,11 @@ ELSE
 ENDC
 	dw MukPicFront, MukPicBack
 
-	db POUND, DISABLE, POISON_GAS, NO_MOVE ; level 1 learnset
+	db POUND, DISABLE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        BODY_SLAM,    HYPER_BEAM,   RAGE,         MEGA_DRAIN,   \
+	tmhm FLAMETHROWER, TOXIC, BODY_SLAM,   HYPER_BEAM,   RAGE,   MEGA_DRAIN,   \
 	     THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  BIDE,         \
 	     SELFDESTRUCT, FIRE_BLAST,   REST,         EXPLOSION,    SUBSTITUTE
 	; end

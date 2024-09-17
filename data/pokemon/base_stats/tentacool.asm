@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_TENTACOOL ; pokedex id
 
 	db  40,  40,  35,  70, 100
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw TentacoolPicFront, TentacoolPicBack
 
-	db ACID, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db POISON_STING, BUBBLE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

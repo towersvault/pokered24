@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_SEADRA ; pokedex id
 
 	db  55,  65,  95,  85,  95
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw SeadraPicFront, SeadraPicBack
 
-	db BUBBLE, SMOKESCREEN, NO_MOVE, NO_MOVE ; level 1 learnset
+	db BUBBLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_KABUTO ; pokedex id
 
 	db  30,  80,  90,  55,  45
@@ -21,7 +23,7 @@ ENDC
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     WATER_GUN,    ICE_BEAM,     BLIZZARD,     RAGE,         MIMIC,        \
 	     DOUBLE_TEAM,  REFLECT,      BIDE,         REST,         SUBSTITUTE,   \
-	     SURF
+	     SURF,      ROCK_SLIDE
 	; end
 
 	db BANK(KabutoPicFront)

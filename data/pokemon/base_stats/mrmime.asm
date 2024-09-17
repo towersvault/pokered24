@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_MR_MIME ; pokedex id
 
 	db  40,  45,  65,  90, 100
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw MrMimePicFront, MrMimePicBack
 
-	db CONFUSION, BARRIER, NO_MOVE, NO_MOVE ; level 1 learnset
+	db BARRIER, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

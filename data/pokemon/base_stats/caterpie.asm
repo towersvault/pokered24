@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_CATERPIE ; pokedex id
 
 	db  45,  30,  35,  45,  20
@@ -18,7 +20,7 @@ ENDC
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm
+	tmhm CUT      
 	; end
 
 	db BANK(CaterpiePicFront)

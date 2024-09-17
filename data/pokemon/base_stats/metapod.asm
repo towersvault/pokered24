@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_METAPOD ; pokedex id
 
 	db  50,  20,  55,  30,  25
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw MetapodPicFront, MetapodPicBack
 
-	db HARDEN, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db TACKLE, HARDEN, STRING_SHOT, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

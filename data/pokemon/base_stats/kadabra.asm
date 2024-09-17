@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_KADABRA ; pokedex id
 
 	db  40,  35,  30, 105, 120
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw KadabraPicFront, KadabraPicBack
 
-	db TELEPORT, CONFUSION, DISABLE, NO_MOVE ; level 1 learnset
+	db TELEPORT, KINESIS, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

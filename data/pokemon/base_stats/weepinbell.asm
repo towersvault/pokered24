@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_WEEPINBELL ; pokedex id
 
 	db  65,  90,  50,  55,  85
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw WeepinbellPicFront, WeepinbellPicBack
 
-	db VINE_WHIP, GROWTH, WRAP, NO_MOVE ; level 1 learnset
+	db GROWTH, POISONPOWDER, VINE_WHIP, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

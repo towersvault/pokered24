@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_GOLDUCK ; pokedex id
 
 	db  80,  82,  78,  85,  80
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw GolduckPicFront, GolduckPicBack
 
-	db SCRATCH, TAIL_WHIP, DISABLE, NO_MOVE ; level 1 learnset
+	db SCRATCH, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
@@ -23,7 +25,7 @@ ENDC
 	     HYPER_BEAM,   PAY_DAY,      SUBMISSION,   COUNTER,      SEISMIC_TOSS, \
 	     RAGE,         DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,         \
 	     SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   SURF,         \
-	     STRENGTH
+	     STRENGTH, PSYCHIC_M, PSYWAVE
 	; end
 
 	db BANK(GolduckPicFront)

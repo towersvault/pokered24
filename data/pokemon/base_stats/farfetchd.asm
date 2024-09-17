@@ -1,6 +1,8 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_FARFETCHD ; pokedex id
 
-	db  52,  65,  55,  60,  58
+	db  62,  75,  65,  70,  68
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, FLYING ; type
@@ -18,7 +20,7 @@ ENDC
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   SWORDS_DANCE, WHIRLWIND,    TOXIC,        BODY_SLAM,    \
+	tmhm RAZOR_WIND,   SWORDS_DANCE,    TOXIC,        BODY_SLAM,    \
 	     TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         MIMIC,        DOUBLE_TEAM,  \
 	     REFLECT,      BIDE,         SWIFT,        SKULL_BASH,   REST,         \
 	     SUBSTITUTE,   CUT,          FLY

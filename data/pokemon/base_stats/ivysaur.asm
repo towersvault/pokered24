@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_IVYSAUR ; pokedex id
 
 	db  60,  62,  63,  60,  80
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw IvysaurPicFront, IvysaurPicBack
 
-	db TACKLE, GROWL, LEECH_SEED, NO_MOVE ; level 1 learnset
+	db TACKLE, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_KABUTOPS ; pokedex id
 
 	db  60, 115, 105,  80,  70
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw KabutopsPicFront, KabutopsPicBack
 
-	db SCRATCH, HARDEN, ABSORB, NO_MOVE ; level 1 learnset
+	db SCRATCH, HARDEN, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
@@ -22,7 +24,7 @@ ENDC
 	     TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     \
 	     BLIZZARD,     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, RAGE,         \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         SKULL_BASH,   \
-	     REST,         SUBSTITUTE,   SURF
+	     REST,         SUBSTITUTE,   CUT,      SURF,  ROCK_SLIDE
 	; end
 
 	db BANK(KabutopsPicFront)

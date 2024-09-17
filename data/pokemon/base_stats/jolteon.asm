@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_JOLTEON ; pokedex id
 
 	db  65,  65,  60, 130, 110
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw JolteonPicFront, JolteonPicBack
 
-	db TACKLE, SAND_ATTACK, QUICK_ATTACK, THUNDERSHOCK ; level 1 learnset
+	db TACKLE, TAIL_WHIP, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

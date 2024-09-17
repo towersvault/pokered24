@@ -1,6 +1,8 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_ONIX ; pokedex id
 
-	db  35,  45, 160,  70,  30
+	db  75,  80, 160, 85,  65
 	;   hp  atk  def  spd  spc
 
 	db ROCK, GROUND ; type

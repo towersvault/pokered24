@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_OMASTAR ; pokedex id
 
 	db  70,  60, 125,  55, 115
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw OmastarPicFront, OmastarPicBack
 
-	db WATER_GUN, WITHDRAW, HORN_ATTACK, NO_MOVE ; level 1 learnset
+	db WATER_GUN, WITHDRAW, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
@@ -22,7 +24,7 @@ ENDC
 	     BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   \
 	     SUBMISSION,   SEISMIC_TOSS, RAGE,         MIMIC,        DOUBLE_TEAM,  \
 	     REFLECT,      BIDE,         SKULL_BASH,   REST,         SUBSTITUTE,   \
-	     SURF
+	     SURF,   ROCK_SLIDE
 	; end
 
 	db BANK(OmastarPicFront)

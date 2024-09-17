@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_RAICHU ; pokedex id
 
 	db  60,  90,  55, 100,  90
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw RaichuPicFront, RaichuPicBack
 
-	db THUNDERSHOCK, GROWL, THUNDER_WAVE, NO_MOVE ; level 1 learnset
+	db THUNDERSHOCK, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

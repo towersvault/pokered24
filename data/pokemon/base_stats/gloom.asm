@@ -1,6 +1,8 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_GLOOM ; pokedex id
 
-	db  60,  65,  70,  40,  85
+	db  70,  65,  70,  40,  85
 	;   hp  atk  def  spd  spc
 
 	db GRASS, POISON ; type
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw GloomPicFront, GloomPicBack
 
-	db ABSORB, POISONPOWDER, STUN_SPORE, NO_MOVE ; level 1 learnset
+	db TACKLE, STUN_SPORE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

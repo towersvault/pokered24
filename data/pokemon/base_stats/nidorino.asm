@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_NIDORINO ; pokedex id
 
 	db  61,  72,  57,  65,  55
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw NidorinoPicFront, NidorinoPicBack
 
-	db LEER, TACKLE, HORN_ATTACK, NO_MOVE ; level 1 learnset
+	db LEER, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

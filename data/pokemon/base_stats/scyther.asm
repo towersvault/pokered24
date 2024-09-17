@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_SCYTHER ; pokedex id
 
 	db  70, 110,  80, 105,  55
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw ScytherPicFront, ScytherPicBack
 
-	db QUICK_ATTACK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db QUICK_ATTACK, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

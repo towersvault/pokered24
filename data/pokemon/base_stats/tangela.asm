@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_TANGELA ; pokedex id
 
 	db  65,  55, 115,  60, 100
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw TangelaPicFront, TangelaPicBack
 
-	db CONSTRICT, BIND, NO_MOVE, NO_MOVE ; level 1 learnset
+	db CONSTRICT, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

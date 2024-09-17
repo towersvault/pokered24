@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_EKANS ; pokedex id
 
 	db  35,  60,  44,  55,  40
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw EkansPicFront, EkansPicBack
 
-	db WRAP, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
+	db LEER, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

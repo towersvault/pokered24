@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_BLASTOISE ; pokedex id
 
 	db  79,  83, 100,  78,  85
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw BlastoisePicFront, BlastoisePicBack
 
-	db TACKLE, TAIL_WHIP, BUBBLE, WATER_GUN ; level 1 learnset
+	db TACKLE, TAIL_WHIP, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

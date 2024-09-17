@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_VICTREEBEL ; pokedex id
 
 	db  80, 105,  65,  70, 100
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw VictreebelPicFront, VictreebelPicBack
 
-	db SLEEP_POWDER, STUN_SPORE, ACID, RAZOR_LEAF ; level 1 learnset
+	db STUN_SPORE, SLEEP_POWDER, ACID, RAZOR_LEAF ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

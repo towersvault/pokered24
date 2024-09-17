@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_CLOYSTER ; pokedex id
 
 	db  50,  95, 180,  70,  85
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw CloysterPicFront, CloysterPicBack
 
-	db WITHDRAW, SUPERSONIC, CLAMP, AURORA_BEAM ; level 1 learnset
+	db TACKLE, WITHDRAW, CLAMP, AURORA_BEAM ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

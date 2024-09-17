@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_MOLTRES ; pokedex id
 
 	db  90, 100,  90,  90, 125
@@ -14,11 +16,11 @@ ELSE
 ENDC
 	dw MoltresPicFront, MoltresPicBack
 
-	db PECK, FIRE_SPIN, NO_MOVE, NO_MOVE ; level 1 learnset
+	db PECK, EMBER, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	tmhm RAZOR_WIND,  FLAMETHROWER,  TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
 	     HYPER_BEAM,   RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     BIDE,         FIRE_BLAST,   SWIFT,        SKY_ATTACK,   REST,         \
 	     SUBSTITUTE,   FLY

@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_ALAKAZAM ; pokedex id
 
 	db  55,  50,  45, 120, 135
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw AlakazamPicFront, AlakazamPicBack
 
-	db TELEPORT, CONFUSION, DISABLE, NO_MOVE ; level 1 learnset
+	db TELEPORT, KINESIS, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

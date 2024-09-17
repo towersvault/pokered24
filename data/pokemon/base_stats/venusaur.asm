@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_VENUSAUR ; pokedex id
 
 	db  80,  82,  83,  80, 100
@@ -14,14 +16,14 @@ ELSE
 ENDC
 	dw VenusaurPicFront, VenusaurPicBack
 
-	db TACKLE, GROWL, LEECH_SEED, VINE_WHIP ; level 1 learnset
+	db TACKLE, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
 	     HYPER_BEAM,   RAGE,         MEGA_DRAIN,   SOLARBEAM,    MIMIC,        \
 	     DOUBLE_TEAM,  REFLECT,      BIDE,         REST,         SUBSTITUTE,   \
-	     CUT
+	     CUT,		   ROCK_SLIDE,   EARTHQUAKE
 	; end
 
 	db BANK(VenusaurPicFront)

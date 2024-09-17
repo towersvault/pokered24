@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_MEOWTH ; pokedex id
 
 	db  40,  45,  35,  90,  40
@@ -21,7 +23,7 @@ ENDC
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     WATER_GUN,    PAY_DAY,      RAGE,         THUNDERBOLT,  THUNDER,      \
 	     MIMIC,        DOUBLE_TEAM,  BIDE,         SWIFT,        SKULL_BASH,   \
-	     REST,         SUBSTITUTE
+	     REST,         SUBSTITUTE,	 CUT
 	; end
 
 	db BANK(MeowthPicFront)

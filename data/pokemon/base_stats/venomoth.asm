@@ -1,6 +1,8 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_VENOMOTH ; pokedex id
 
-	db  70,  65,  60,  90,  90
+	db  70,  75,  60, 100,  95
 	;   hp  atk  def  spd  spc
 
 	db BUG, POISON ; type
@@ -14,14 +16,14 @@ ELSE
 ENDC
 	dw VenomothPicFront, VenomothPicBack
 
-	db TACKLE, DISABLE, POISONPOWDER, LEECH_LIFE ; level 1 learnset
+	db TACKLE, DISABLE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	tmhm RAZOR_WIND,       TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
 	     HYPER_BEAM,   RAGE,         MEGA_DRAIN,   SOLARBEAM,    PSYCHIC_M,    \
 	     TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
-	     SWIFT,        REST,         PSYWAVE,      SUBSTITUTE
+	     SWIFT,        REST,         PSYWAVE,      SUBSTITUTE,   FLASH
 	; end
 
 	db BANK(VenomothPicFront)

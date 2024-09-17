@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_DEWGONG ; pokedex id
 
 	db  90,  70,  80,  70,  95
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw DewgongPicFront, DewgongPicBack
 
-	db HEADBUTT, GROWL, AURORA_BEAM, NO_MOVE ; level 1 learnset
+	db HEADBUTT, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

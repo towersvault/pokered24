@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_KOFFING ; pokedex id
 
 	db  40,  65,  95,  35,  60
@@ -18,7 +20,7 @@ ENDC
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        RAGE,         THUNDERBOLT,  THUNDER,      MIMIC,        \
+	tmhm FLAMETHROWER, TOXIC,  RAGE,  THUNDERBOLT,  THUNDER,     MIMIC,        \
 	     DOUBLE_TEAM,  BIDE,         SELFDESTRUCT, FIRE_BLAST,   REST,         \
 	     EXPLOSION,    SUBSTITUTE
 	; end

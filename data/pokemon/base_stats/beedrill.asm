@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_BEEDRILL ; pokedex id
 
 	db  65,  80,  40,  75,  45
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw BeedrillPicFront, BeedrillPicBack
 
-	db FURY_ATTACK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db STRING_SHOT, HARDEN, POISON_STING, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

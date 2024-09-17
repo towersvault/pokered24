@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_GENGAR ; pokedex id
 
 	db  60,  65,  60, 110, 130
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw GengarPicFront, GengarPicBack
 
-	db LICK, CONFUSE_RAY, NIGHT_SHADE, NO_MOVE ; level 1 learnset
+	db LICK, CONFUSE_RAY, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

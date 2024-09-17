@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_VENONAT ; pokedex id
 
 	db  60,  55,  50,  45,  40
@@ -20,7 +22,7 @@ ENDC
 	; tm/hm learnset
 	tmhm TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         MEGA_DRAIN,   \
 	     SOLARBEAM,    PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     BIDE,         REST,         PSYWAVE,      SUBSTITUTE
+	     BIDE,         REST,         PSYWAVE,      SUBSTITUTE,   FLASH
 	; end
 
 	db BANK(VenonatPicFront)

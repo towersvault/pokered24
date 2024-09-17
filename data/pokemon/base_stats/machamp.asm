@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_MACHAMP ; pokedex id
 
 	db  90, 130,  80,  55,  65
@@ -14,7 +16,7 @@ ELSE
 ENDC
 	dw MachampPicFront, MachampPicBack
 
-	db KARATE_CHOP, LOW_KICK, LEER, NO_MOVE ; level 1 learnset
+	db KARATE_CHOP, LOW_KICK, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

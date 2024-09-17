@@ -1,3 +1,5 @@
+; @towersvault
+; Implemented Pokemon Yellow Legacy rebalancing changes.
 	db DEX_DODRIO ; pokedex id
 
 	db  60, 110,  70, 100,  60
@@ -14,13 +16,13 @@ ELSE
 ENDC
 	dw DodrioPicFront, DodrioPicBack
 
-	db PECK, GROWL, FURY_ATTACK, NO_MOVE ; level 1 learnset
+	db PECK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm WHIRLWIND,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
+	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
 	     HYPER_BEAM,   RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     BIDE,         SKULL_BASH,   SKY_ATTACK,   REST,         TRI_ATTACK,   \
+	     BIDE,         SKULL_BASH,   REST,         TRI_ATTACK,                 \
 	     SUBSTITUTE,   FLY
 	; end
 

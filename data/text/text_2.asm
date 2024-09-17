@@ -1210,6 +1210,12 @@ _GainedText::
 	line "@"
 	text_end
 
+_GainedNoText::
+	text_ram wcd6d
+	text " is at"
+	line "LEVEL CAP!"
+	prompt
+
 _WithExpAllText::
 	text "with EXP.ALL,"
 	cont "@"
@@ -1788,3 +1794,11 @@ _TextIDErrorText::
 _ContCharText::
 	text "<_CONT>@"
 	text_end
+
+_DifficultyText::
+	text "Select Difficulty"
+	done
+
+_AreYouSureText::
+	text "Are you sure?"
+	done

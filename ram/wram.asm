@@ -236,7 +236,12 @@ wPlayerMonNumber:: db
 ; the address of the menu cursor's current location within wTileMap
 wMenuCursorLocation:: dw
 
-	ds 2
+wMaxDaycareLevel:: db
+
+	ds 1
+
+; unused?
+	ds 1
 
 ; how many times should HandleMenuInput poll the joypad state before it returns?
 wMenuJoypadPollCount:: db
@@ -2039,10 +2044,16 @@ wSeafoamIslandsB3FCurScript:: db
 wRoute23CurScript:: db
 wSeafoamIslandsB4FCurScript:: db
 wRoute18Gate1FCurScript:: db
-	ds 78
+	; ds 78
 wGameProgressFlagsEnd::
 
-	ds 56
+wDifficulty::
+	; $00 = normal
+	; $01 = hard
+	ds 1
+
+; unused?
+	ds 55
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
@@ -2202,7 +2213,12 @@ wCardKeyDoorX:: db
 wFirstLockTrashCanIndex:: db
 wSecondLockTrashCanIndex:: db
 
-	ds 2
+wGameStage:: db
+	; $00 = before champion fight
+	; $01 = post game
+
+; @towersvault: wMonLevelCap used in the _HARD ROM when experience gets added
+wMonLevelCap:: db
 
 wEventFlags:: flag_array NUM_EVENTS
 

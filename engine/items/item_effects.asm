@@ -1334,7 +1334,55 @@ ItemUseMedicine:
 	ld bc, wPartyMon1Level - wPartyMon1
 	add hl, bc ; hl now points to level
 	ld a, [hl] ; a = level
-	cp MAX_LEVEL
+	ld b, MAX_LEVEL
+
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	jr z, .next1
+
+	ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr nz, .next1
+	farcall GetBadgesObtained
+	ld a, [wNumSetBits]
+
+	cp BADGE8
+	ld b, BADGECAP_BLUE
+	jr nc, .next1
+
+	cp BADGE7
+	ld b, BADGECAP_GIOVANNI
+	jr nc, .next1
+
+	cp BADGE6
+	ld b, BADGECAP_BLAINE
+	jr nc, .next1
+
+	cp BADGE5
+	ld b, BADGECAP_SABRINA
+	jr nc, .next1
+
+	cp BADGE4
+	ld b, BADGECAP_KOGA
+	jr nc, .next1
+
+	cp BADGE3
+	ld b, BADGECAP_ERIKA
+	jr nc, .next1
+
+	cp BADGE2
+	ld b, BADGECAP_LTSURGE
+	jr nc, .next1
+
+	cp BADGE1
+	ld b, BADGECAP_MISTY
+	jr nc, .next1
+
+	ld b, BADGECAP_BROCK
+.next1
+	pop hl
+	ld a, [hl] ; a = level
+	cp b ; MAX_LEVEL on normal mode, level cap on hard mode
 	jr z, .vitaminNoEffect ; can't raise level above 100
 	inc a
 	ld [hl], a ; store incremented level

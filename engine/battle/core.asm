@@ -1387,6 +1387,11 @@ EnemySendOutFirstMon:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jr z, .next4
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	jr z, .DontForceSetMode
+	jr .next4 ; skip switch request if on hard mode
+.DontForceSetMode
 	ld a, [wOptions]
 	bit BIT_BATTLE_SHIFT, a
 	jr nz, .next4
@@ -2204,7 +2209,7 @@ DisplayBattleMenu::
 .throwSafariBallWasSelected
 	ld a, SAFARI_BALL
 	ld [wcf91], a
-	jr UseBagItem
+	jp UseBagItem
 
 .upperLeftMenuItemWasNotSelected ; a menu item other than the upper left item was selected
 	cp $2
@@ -2241,8 +2246,23 @@ BagWasSelected:
 	call DrawHUDsAndHPBars
 .next
 	ld a, [wBattleType]
-	dec a ; is it the old man tutorial?
-	jr nz, DisplayPlayerBag ; no, it is a normal battle
+	cp BATTLE_TYPE_OLD_MAN ; is it the old man battle?
+	jr z, .simulatedInputBattle
+
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	jr z, .NormalMode
+
+	ld a, [wIsInBattle] ; Check if this is a wild battle or trainer battle
+	dec a
+	jr z, .NormalMode ; Not a trainer battle
+
+	ld hl, ItemsCantBeUsedHereText ; items can't be used during trainer battles in hard mode
+	call PrintText
+	jp DisplayBattleMenu
+.NormalMode
+	jr DisplayPlayerBag ; no, it is a normal battle
+.simulatedInputBattle
 	ld hl, OldManItemList
 	ld a, l
 	ld [wListPointer], a
@@ -2252,7 +2272,7 @@ BagWasSelected:
 
 OldManItemList:
 	db 1 ; # items
-	db POKE_BALL, 50
+	db POKE_BALL, 1
 	db -1 ; end
 
 DisplayPlayerBag:
@@ -4020,11 +4040,58 @@ CheckForDisobedience:
 	ld a, [wPlayerID]
 	cp [hl]
 	jr nz, .monIsTraded
+
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	jr z, .NormalMode2
+	; What level might disobey?
+	ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	ld a, 101
+	jr nz, .next
+	farcall GetBadgesObtained
+	ld a, [wNumSetBits]
+
+	cp BADGE8
+	ld a, BADGECAP_BLUE
+	jr nc, .next
+
+	cp BADGE7
+	ld a, BADGECAP_GIOVANNI
+	jr nc, .next
+
+	cp BADGE6
+	ld a, BADGECAP_BLAINE
+	jr nc, .next
+
+	cp BADGE5
+	ld a, BADGECAP_SABRINA
+	jr nc, .next
+
+	cp BADGE4
+	ld a, BADGECAP_KOGA
+	jr nc, .next
+
+	cp BADGE3
+	ld a, BADGECAP_ERIKA
+	jr nc, .next
+
+	cp BADGE2
+	ld a, BADGECAP_LTSURGE
+	jr nc, .next
+
+	cp BADGE1
+	ld a, BADGECAP_MISTY
+	jr nc, .next
+
+	ld a, BADGECAP_BROCK
+	jp .next
+.NormalMode2
 	inc hl
 	ld a, [wPlayerID + 1]
 	cp [hl]
-	jp z, .canUseMove
-; it was traded
+	jp z, .canUseMove ; on normal mode non traded Pokemon will always obey
+	; it was traded
 .monIsTraded
 ; what level might disobey?
 	ld hl, wObtainedBadges

@@ -117,6 +117,55 @@ GainExperience:
 	ld [wd0b5], a
 	call GetMonHeader
 	ld d, MAX_LEVEL
+
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	jr z, .next1 ; no level caps if not on hard mode
+
+	ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	ld d, 100
+	jr nz, .next1
+	call GetBadgesObtained
+	ld a, [wNumSetBits]
+
+	cp BADGE8
+	ld d, BADGECAP_BLUE
+	jr nc, .next1
+
+	cp BADGE7
+	ld d, BADGECAP_GIOVANNI
+	jr nc, .next1
+
+	cp BADGE6
+	ld d, BADGECAP_BLAINE
+	jr nc, .next1
+
+	cp BADGE5
+	ld d, BADGECAP_SABRINA
+	jr nc, .next1
+
+	cp BADGE4
+	ld d, BADGECAP_KOGA
+	jr nc, .next1
+
+	cp BADGE3
+	ld d, BADGECAP_ERIKA
+	jr nc, .next1
+
+	cp BADGE2
+	ld d, BADGECAP_LTSURGE
+	jr nc, .next1
+
+	cp BADGE1
+	ld d, BADGECAP_MISTY
+	jr nc, .next1
+
+	ld d, BADGECAP_BROCK
+.next1
+	ld a, d
+	ld [wMonLevelCap], a
+
 	callfar CalcExperience ; get max exp
 ; compare max exp with current exp
 	ldh a, [hExperience]
@@ -161,6 +210,27 @@ ENDC
 	push hl
 	farcall CalcLevelFromExperience
 	pop hl
+; @towersvault
+; Hard difficulty level checking
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	jr z, .next3
+
+	push de
+	ld a, [wMonLevelCap]
+	ld d, a
+
+	ld a, [hl]
+	cp d
+	jr nz, .levelCheck
+	pop de
+.skipExpText
+	ld hl, GainedNoText
+	call PrintText
+	jp .nextMon
+.levelCheck
+	pop de
+.next3
 	ld a, [hl] ; current level
 	cp d
 	jp z, .nextMon ; if level didn't change, go to next mon
@@ -365,6 +435,10 @@ GainedText:
 	ld hl, BoostedText
 	ret
 
+GainedNoText:
+	text_far _GainedNoText
+	text_end
+
 WithExpAllText:
 	text_far _WithExpAllText
 	text_asm
@@ -382,3 +456,19 @@ GrewLevelText:
 	text_far _GrewLevelText
 	sound_level_up
 	text_end
+
+; function to count the set bits in wObtainedBadges
+; OUTPUT:
+; a = set bits in wObtainedBadges
+GetBadgesObtained::
+	push hl
+	push bc
+	push de
+	ld hl, wObtainedBadges
+	ld b, $1
+	call CountSetBits
+	pop de
+	pop bc
+	pop hl
+	ld a, [wNumSetBits]
+	ret 

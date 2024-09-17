@@ -67,11 +67,62 @@ DaycareGentlemanText:
 	ld [wMonDataLocation], a
 	call LoadMonData
 	callfar CalcLevelFromExperience
+
+	push bc
+	ld a, [wDifficulty] ; Check if player is on hard mode
+	and a
+	ld b, MAX_LEVEL
+	jr z, .next1 ; no level caps if not on hard mode
+
+	ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr nz, .next1
+	farcall GetBadgesObtained
+	ld a, [wNumSetBits]
+
+	cp BADGE8
+	ld b, BADGECAP_BLUE
+	jr nc, .next1
+
+	cp BADGE7
+	ld b, BADGECAP_GIOVANNI
+	jr nc, .next1
+
+	cp BADGE6
+	ld b, BADGECAP_BLAINE
+	jr nc, .next1
+
+	cp BADGE5
+	ld b, BADGECAP_SABRINA
+	jr nc, .next1
+
+	cp BADGE4
+	ld b, BADGECAP_KOGA
+	jr nc, .next1
+
+	cp BADGE3
+	ld b, BADGECAP_ERIKA
+	jr nc, .next1
+
+	cp BADGE2
+	ld b, BADGECAP_LTSURGE
+	jr nc, .next1
+
+	cp BADGE1
+	ld b, BADGECAP_MISTY
+	jr nc, .next1
+
+	ld b, BADGECAP_BROCK
+.next1
+	ld a, b
+	ld [wMaxDaycareLevel], a
 	ld a, d
-	cp MAX_LEVEL
+	cp b
+	pop bc
 	jr c, .skipCalcExp
 
-	ld d, MAX_LEVEL
+	ld a, [wMaxDaycareLevel]
+	ld d, a
 	callfar CalcExperience
 	ld hl, wDayCareMonExp
 	ldh a, [hExperience]
@@ -80,7 +131,8 @@ DaycareGentlemanText:
 	ld [hli], a
 	ldh a, [hExperience + 2]
 	ld [hl], a
-	ld d, MAX_LEVEL
+	ld a, [wMaxDaycareLevel]
+	ld d, a
 
 .skipCalcExp
 	xor a

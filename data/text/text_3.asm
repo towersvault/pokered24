@@ -328,3 +328,18 @@ _TradeCenterOpponentText::
 _ColosseumOpponentText::
 	text "!"
 	done
+
+_NormalModeText::
+	text "Are you sure?"
+
+	para "Classic #MON"
+	line "rules."
+	done
+
+_HardModeText::
+	text "Are you sure?"
+
+	para "Set mode, no"
+	line "items in battle,"
+	cont "gym level caps."
+	done

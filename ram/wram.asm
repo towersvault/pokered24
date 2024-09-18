@@ -169,6 +169,7 @@ wSerialPartyMonsPatchList:: ds 200
 wSerialEnemyMonsPatchList:: ds 200
 ENDU
 
+wAIBuffer1::
 	ds 80
 
 

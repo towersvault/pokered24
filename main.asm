@@ -374,6 +374,11 @@ SECTION "Vending Machine", ROMX
 
 INCLUDE "engine/events/vending_machine.asm"
 
+; Moved from trainer_ai.asm
+INCLUDE "engine/battle/read_trainer_party.asm"
+INCLUDE "data/trainers/special_moves.asm"
+INCLUDE "data/trainers/parties.asm"
+
 
 SECTION "Itemfinder 2", ROMX
 

@@ -107,7 +107,7 @@ AIMoveChoiceModificationFunctionPointers:
 	dw AIMoveChoiceModification1
 	dw AIMoveChoiceModification2
 	dw AIMoveChoiceModification3
-	dw AIMoveChoiceModification4 ; unused, does nothing
+	dw SmartAI
 
 ; discourages moves that cause no damage but only a status ailment if player's mon already has one
 AIMoveChoiceModification1:
@@ -152,6 +152,294 @@ StatusAilmentMoveEffects:
 	db PARALYZE_EFFECT
 	db -1 ; end
 
+SmartAI: ; originally by Dabomstew
+; damaging move priority on turn 3+
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement
+	cp $2
+	jr c, .healingCheck
+	ld hl, wBuffer - 1
+	ld de, wEnemyMonMoves
+	ld b, NUM_MOVES + 1
+.damageLoop
+	dec b
+	jr z, .healingCheck
+	inc hl
+	ld a, [de]
+	and a
+	jr z, .healingCheck
+	inc de
+	call ReadMove
+	ld a, [wEnemyMovePower]
+	and a
+	jr z, .damageLoop
+; encourage by 2
+	dec [hl]
+	dec [hl]
+	jr .damageLoop
+; healing moves?
+.healingCheck
+	ld a, [wEnemyMonMaxHP]
+	and a
+	jr z, .noscale
+	ld b, a
+	ld a, [wEnemyMonMaxHP + 1]
+	srl b
+	rr a
+	ld b, a
+	ld a, [wEnemyMonHP]
+	ld c, a
+	ld a, [wEnemyMonHP + 1]
+	srl c
+	rr a
+	ld c, a
+	jr .realHealCheck
+.noscale
+	ld a, [wEnemyMonMaxHP + 1]
+	ld b, a
+	ld a, [wEnemyMonHP + 1]
+	ld c, a
+.realHealCheck
+	srl b
+	ld a, c
+	cp b
+	ld hl, HealingMoves
+	jr nc, .debuffHealingMoves
+	ld b, -8
+	call Random
+	ld a, [hRandomAdd]
+	cp $C0 ; 3/4 chance
+	jr nc, .dreamEaterCheck
+	jr .applyHealingChance
+.debuffHealingMoves
+	ld b, 10
+.applyHealingChance
+	call AlterMovePriorityArray
+.dreamEaterCheck
+	ld a, [wBattleMonStatus]
+	and SLP_MASK
+	ld a, DREAM_EATER
+	ld [wAIBuffer1], a
+	jr z, .debuffDreamEater
+	ld b, -1
+	jr .applyDreamEater
+.debuffDreamEater
+	ld b, 20
+.applyDreamEater
+	call AlterMovePriority
+.effectivenessCheck
+; encourage any damaging move with SE, slightly discrouge NVE moves
+	ld hl, wBuffer - 1
+	ld de, wEnemyMonMoves
+	ld b, NUM_MOVES + 1
+.seloop
+	dec b
+	jr z, .selfBuffCheck
+	inc hl
+	ld a, [de]
+	and a
+	jr z, .selfBuffCheck
+	inc de
+	call ReadMove
+	ld a, [wEnemyMoveEffect]
+	cp SUPER_FANG_EFFECT
+	jr z, .seloop
+	cp SPECIAL_DAMAGE_EFFECT
+	jr z, .seloop
+	ld a, [wEnemyMovePower]
+	cp 10
+	jr c, .seloop
+	push hl
+	push bc
+	push de
+	callfar AIGetTypeEffectiveness
+	pop de
+	pop bc
+	pop hl
+	ld a, [wd11e]
+	cp $0a
+	jr z, .seloop
+	jr c, .nvemove
+; strongly encourage SE Move
+	rept 4
+	dec [hl]
+	endr
+	cp $15
+	jr c, .seloop
+; even more strongly encourage 4x SE move
+	rept 3
+	dec [hl]
+	endr
+	jr .seloop
+.nvemove
+; slighly discourage
+	inc [hl]
+	and a
+	jr nz, .seloop
+; strongly discourage immunity
+	ld a, [hl]
+	add 50
+	ld [hl], a
+	jr .seloop
+.selfBuffCheck
+; 50% chance to encourage self-buff or status on turn 1/2
+	ld a, [wAILayer2Encouragement]
+	cp $2
+	jr nc, .discourageStatusOnly
+	call Random
+	ld a, [hRandomAdd]
+	cp $80
+	jr nc, .discourageStatusOnly
+	ld hl, MehStatusMoves
+	ld b, -3
+	call AlterMovePriorityArray
+	ld hl, LightBuffStatusMoves
+	ld b, -5
+	call AlterMovePriorityArray
+	ld hl, HeavyBuffStatusMoves
+	ld b, -6
+	call AlterMovePriorityArray
+.discourageStatusOnly
+; if enemy already has a status affliction, don't keep trying to give them one
+; this *should* already be part of AIMoveChoiceModification1 but it doesn't always seem to catch them
+	ld a, [wBattleMonStatus]
+	and a
+	ret z
+	ld hl, StatusOnlyMoves
+	ld b, $20
+	call AlterMovePriorityArray
+	ret
+	
+MehStatusMoves:
+	db GROWL
+	db DISABLE
+	db MIST
+	db HARDEN
+	db WITHDRAW
+	db DEFENSE_CURL
+	db TAIL_WHIP
+	db LEER
+	db $FF
+	
+LightBuffStatusMoves:
+	db FOCUS_ENERGY
+	db GROWTH
+	db MEDITATE
+	db AGILITY
+	db MINIMIZE
+	db DOUBLE_TEAM
+	db REFLECT
+	db LIGHT_SCREEN
+	db BARRIER
+	db SUBSTITUTE
+	db POISONPOWDER
+	db STRING_SHOT
+	db SCREECH
+	db SMOKESCREEN
+	db POISON_GAS
+	db FLASH
+	db SAND_ATTACK
+	db $FF
+	
+HeavyBuffStatusMoves:
+	db SWORDS_DANCE
+	db AMNESIA
+	db SING
+	db SLEEP_POWDER
+	db HYPNOSIS
+	db LOVELY_KISS
+	db SPORE
+	db STUN_SPORE
+	db THUNDER_WAVE
+	db GLARE
+	db CONFUSE_RAY
+	db SUPERSONIC
+	db $FF
+	
+HealingMoves:
+	db REST
+	db RECOVER
+	db SOFTBOILED
+	db $FF
+	
+StatusOnlyMoves:
+	db SUPERSONIC
+	db POISONPOWDER
+	db STUN_SPORE
+	db SLEEP_POWDER
+	db THUNDER_WAVE
+	db TOXIC
+	db HYPNOSIS
+	db CONFUSE_RAY
+	db GLARE
+	db POISON_GAS
+	db LOVELY_KISS
+	db SPORE
+	db SING
+	db $FF
+	
+AlterMovePriority:
+; [wAIBuffer1] = move
+; b = priority change
+	ld hl, wBuffer - 1
+	ld de, wEnemyMonMoves
+	ld c, NUM_MOVES + 1
+.moveLoop
+	dec c
+	ret z
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+	inc de
+	push bc
+	ld b, a
+	ld a, [wAIBuffer1]
+	cp b
+	pop bc
+	jr nz, .moveLoop
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ret
+	
+AlterMovePriorityArray:
+; hl = move array
+; b = priority change
+	ld a, h
+	ld [wAIBuffer1], a
+	ld a, l
+	ld [wAIBuffer1 + 1], a
+	ld hl, wBuffer - 1
+	ld de, wEnemyMonMoves
+	ld c, NUM_MOVES + 1
+.moveLoop
+	dec c
+	ret z
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+	inc de
+	push hl
+	push de
+	push bc
+	ld b, a
+	ld a, [wAIBuffer1]
+	ld h, a
+	ld a, [wAIBuffer1 + 1]
+	ld l, a
+	ld a, b
+	ld de, $0001
+	call IsInArray
+	pop bc
+	pop de
+	pop hl
+	jr nc, .moveLoop
+	ld a, [hl]
+	add b
+	ld [hl], a
+	ret
+		
 ; slightly encourage moves with specific effects.
 ; in particular, stat-modifying moves and other move effects
 ; that fall in-between
@@ -281,11 +569,12 @@ INCLUDE "data/trainers/names.asm"
 
 INCLUDE "engine/battle/misc.asm"
 
-INCLUDE "engine/battle/read_trainer_party.asm"
+; Moved to different bank
+; INCLUDE "engine/battle/read_trainer_party.asm"
 
-INCLUDE "data/trainers/special_moves.asm"
+; INCLUDE "data/trainers/special_moves.asm"
 
-INCLUDE "data/trainers/parties.asm"
+; INCLUDE "data/trainers/parties.asm"
 
 TrainerAI:
 	and a
@@ -321,125 +610,176 @@ TrainerAI:
 
 INCLUDE "data/trainers/ai_pointers.asm"
 
-JugglerAI:
-	cp 25 percent + 1
+SwitchOutAI:
+	cp $40
 	ret nc
 	jp AISwitchIfEnoughMons
 
-BlackbeltAI:
-	cp 13 percent - 1
+XAttack1AI:
+	cp $20
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
 	ret nc
 	jp AIUseXAttack
 
-GiovanniAI:
-	cp 25 percent + 1
+GuardSpecAI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
 	ret nc
 	jp AIUseGuardSpec
 
-CooltrainerMAI:
-	cp 25 percent + 1
+XAttack2AI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
 	ret nc
 	jp AIUseXAttack
 
-CooltrainerFAI:
-	; The intended 25% chance to consider switching will not apply.
-	; Uncomment the line below to fix this.
-	cp 25 percent + 1
-	; ret nc
-	ld a, 10
+SwitchOrHyperPotionAI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,$A
 	call AICheckIfHPBelowFraction
-	jp c, AIUseHyperPotion
-	ld a, 5
+	jp c,AIUseHyperPotion
+	ld a,5
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AISwitchIfEnoughMons
 
-BrockAI:
-; if his active monster has a status condition, use a full heal
-	ld a, [wEnemyMonStatus]
+FullHealOrPotionAI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,[wEnemyMonStatus]
 	and a
-	ret z
-	jp AIUseFullHeal
-
-MistyAI:
-	cp 25 percent + 1
-	ret nc
-	jp AIUseXDefend
-
-LtSurgeAI:
-	cp 25 percent + 1
-	ret nc
-	jp AIUseXSpeed
-
-ErikaAI:
-	cp 50 percent + 1
-	ret nc
-	ld a, 10
-	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseSuperPotion
-
-KogaAI:
-	cp 25 percent + 1
-	ret nc
-	jp AIUseXAttack
-
-BlaineAI:
-	cp 25 percent + 1
-	ret nc
-	jp AIUseSuperPotion
-
-SabrinaAI:
-	cp 25 percent + 1
-	ret nc
-	ld a, 10
-	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseHyperPotion
-
-Rival2AI:
-	cp 13 percent - 1
-	ret nc
-	ld a, 5
+	jp nz, AIUseFullHeal
+	ld a,5
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUsePotion
 
-Rival3AI:
-	cp 13 percent - 1
+FullHealAI:
+	cp $40
 	ret nc
-	ld a, 5
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+; if his active monster has a status condition, use a full heal
+	ld a,[wEnemyMonStatus]
+	and a
+	ret z
+	jp AIUseFullHeal
+
+XDefendAI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ret nc
+	jp AIUseXDefend
+
+XSpeedAI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ret nc
+	jp AIUseXSpeed
+
+SuperPotion1AI:
+	cp $80
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,$A
+	call AICheckIfHPBelowFraction
+	ret nc
+	jp AIUseSuperPotion
+
+SuperPotion2AI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,5
+	call AICheckIfHPBelowFraction
+	ret nc
+	jp AIUseSuperPotion
+
+HyperPotionAI:
+	cp $40
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,$A
+	call AICheckIfHPBelowFraction
+	ret nc
+	jp AIUseHyperPotion
+
+PotionAI:
+	cp $20
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,5
+	call AICheckIfHPBelowFraction
+	ret nc
+	jp AIUsePotion
+
+FullRestoreAI:
+	cp $20
+	ret nc
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,5
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUseFullRestore
 
-LoreleiAI:
-	cp 50 percent + 1
+SwitchOrSuperPotionAI:
+	cp $14
+	jp c,AISwitchIfEnoughMons
+	cp $80
 	ret nc
-	ld a, 5
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,4
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUseSuperPotion
 
-BrunoAI:
-	cp 25 percent + 1
+HyperPotion2AI:
+	cp $80
 	ret nc
-	jp AIUseXDefend
-
-AgathaAI:
-	cp 8 percent
-	jp c, AISwitchIfEnoughMons
-	cp 50 percent + 1
-	ret nc
-	ld a, 4
-	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseSuperPotion
-
-LanceAI:
-	cp 50 percent + 1
-	ret nc
-	ld a, 5
+	ld a, [wAILayer2Encouragement] ; wAILayer2Encouragement (How many turns has it been out?)
+	cp 2
+	ccf
+	ret nc ; They can't heal too early
+	ld a,5
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUseHyperPotion

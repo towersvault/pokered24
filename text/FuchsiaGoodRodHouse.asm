@@ -1,26 +1,26 @@
 _FuchsiaGoodRodHouseFishingGuruText::
 	text "I'm the FISHING"
-	line "GURU's older"
-	cont "brother!"
+	line "GURU's brother!"
 
-	para "I simply Looove"
+	para "I simply looove"
 	line "fishing!"
 
 	para "Do you like to"
 	line "fish?"
 	done
 
-_FuchsiaGoodRodHouseFishingGuruReceivedGoodRodText::
+_FuchsiaGoodRodHouseFishingGuruReceivedGiftText::
 	text "Grand! I like"
 	line "your style!"
 
-	para "Take this and"
-	line "fish, young one!"
+	para "I don't have a"
+	line "spare rod to give"
+	cont "you,"
 
-	para "<PLAYER> received"
-	line "a @"
-	text_ram wStringBuffer
-	text "!@"
+	para "but I did fish"
+	line "myself up one of"
+	cont "these in the"
+	cont "SEAFOAM ISLANDS!"
 	text_end
 
 _FuchsiaGoodRodHouseFishingGuruThatsSoDisappointingText::

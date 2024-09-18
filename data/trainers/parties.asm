@@ -79,7 +79,7 @@ YoungsterData:
 	db 18, NIDORAN_M, NIDORINO, 0
 ; Unused
 	db 17, SPEAROW, RATTATA, RATTATA, SPEAROW, 0
-; Route 9 TODO
+; Route 9
 	db 28, SANDSHREW, 0
 
 BugCatcherData:
@@ -104,10 +104,6 @@ BugCatcherData:
 ; Route 9
 	db 23, VENONAT, PINSIR, 0
 	db 21, BUTTERFREE, BEEDRILL, SCYTHER, 0
-; Viridian Forest TODO
-	db 6, CATERPIE, METAPOD, 0
-; Victory Road - Talos TODO
-	db 53, SCYTHER, KABUTOPS, STARMIE, BLASTOISE, 0
 
 LassData:
 ; Route 3
@@ -137,8 +133,6 @@ LassData:
 ; Celadon Gym
 	db 28, GLOOM, WEEPINBELL, 0
 	db 29, PARASECT, EXEGGCUTE, 0
-; Viridian Forest TODO
-	db 6, NIDORAN_F, NIDORAN_M, 0
 
 SailorData:
 ; SS Anne Stern
@@ -170,8 +164,6 @@ JrTrainerMData:
 	db 21, RATICATE, DIGLETT, BELLSPROUT, SANDSHREW, 0
 ; Route 12
 	db 29, NIDORINA, NIDORINO, 0
-; Route 6 TODO
-	db 16, HORSEA, BELLSPROUT, 0
 
 JrTrainerFData:
 ; Cerulean Gym
@@ -210,8 +202,6 @@ JrTrainerFData:
 	db 35, TANGELA, PONYTA, SANDSLASH, 0
 ; Route 20
 	db 40, TENTACRUEL, SEADRA, DEWGONG, 0
-; Route 6 TODO
-	db 19, CUBONE, 0
 
 PokemaniacData:
 ; Route 10
@@ -267,8 +257,6 @@ HikerData:
 	db $FF, 24, MACHOP, 25, MACHOKE, 0
 	db 24, ONIX, SANDSHREW, ONIX, 0
 	db $FF, 24, GEODUDE, 25, GRAVELER, 0
-; Victory Road - Sable TODO
-	db 52, AERODACTYL, PARASECT, JOLTEON, ARCANINE, 0
 
 BikerData:
 ; Route 13
@@ -316,8 +304,6 @@ BurglarData:
 	db 43, NINETALES, 0
 ; Mansion B1F
 	db 44, MACHOKE, RAPIDASH, 0
-; Victory Road - Disq TODO
-	db 53, FLAREON, TENTACRUEL, NINETALES, DEWGONG, 0
 
 EngineerData:
 ; Unused
@@ -418,8 +404,6 @@ BeautyData:
 	db 43, DRAGONAIR, GYARADOS, SEADRA, 0
 ; Route 20
 	db 43, BLASTOISE, DEWGONG, SLOWBRO, 0
-; Victory Road - ReaderDragon TODO
-	db 53, RAICHU, HYPNO, PERSIAN, TAUROS, 0
 
 PsychicData:
 ; Saffron Gym

@@ -10,7 +10,6 @@ PokemonMansion1FWildMons:
 	db 36, GRIMER
 	db 40, MAGMAR
 	db 45, MAGMAR
-ENDC
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

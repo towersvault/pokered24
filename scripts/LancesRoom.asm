@@ -151,6 +151,8 @@ LancesRoomLanceEndBattleText:
 	text_end
 
 LancesRoomLanceAfterBattleText:
+	callfar PokemonMansionB1FMewShow
+	
 	text_far _LancesRoomLanceAfterBattleText
 	text_asm
 	SetEvent EVENT_BEAT_LANCE

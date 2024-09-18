@@ -889,6 +889,9 @@ AIPrintItemUseAndUpdateHPBar:
 	xor a
 	ld [wHPBarType], a
 	predef UpdateHPBar2
+	push af
+	farcall DrawEnemyHUDAndHPBar
+	pop af
 	jp DecrementAICount
 
 AISwitchIfEnoughMons:
@@ -973,6 +976,9 @@ AICureStatus:
 	ld [wEnemyMonStatus], a ; clear status of active enemy
 	ld hl, wEnemyBattleStatus3
 	res 0, [hl]
+	push af
+	farcall DrawEnemyHUDAndHPBar
+	pop af
 	ret
 
 AIUseXAccuracy: ; unused

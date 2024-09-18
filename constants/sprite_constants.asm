@@ -51,7 +51,7 @@
 	const SPRITE_FISHER                  ; $2f
 	const SPRITE_KOGA                    ; $30
 	const SPRITE_GUARD                   ; $31
-	const SPRITE_UNUSED_GUARD            ; $32
+	const SPRITE_MEW					 ; $32
 	const SPRITE_MOM                     ; $33
 	const SPRITE_BALDING_GUY             ; $34
 	const SPRITE_LITTLE_BOY              ; $35
@@ -62,7 +62,6 @@
 	const SPRITE_BRUNO                   ; $3a
 	const SPRITE_LORELEI                 ; $3b
 	const SPRITE_SEEL                    ; $3c
-	const SPRITE_MEW
 DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_POKE_BALL               ; $3d
 	const SPRITE_FOSSIL                  ; $3e

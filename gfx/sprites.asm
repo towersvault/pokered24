@@ -1,5 +1,6 @@
 SECTION "NPC Sprites 1", ROMX
 
+MewSprite::              INCBIN "gfx/sprites/mew.2bpp"
 ScientistSprite::        INCBIN "gfx/sprites/scientist.2bpp"
 RockerSprite::           INCBIN "gfx/sprites/rocker.2bpp"
 SwimmerSprite::          INCBIN "gfx/sprites/swimmer.2bpp"
@@ -27,7 +28,6 @@ ClipboardSprite::        INCBIN "gfx/sprites/clipboard.2bpp"
 SnorlaxSprite::          INCBIN "gfx/sprites/snorlax.2bpp"
 OldAmberSprite::         INCBIN "gfx/sprites/old_amber.2bpp"
 GamblerAsleepSprite::    INCBIN "gfx/sprites/gambler_asleep.2bpp"
-MewSprite::              INCBIN "gfx/sprites/mew.2bpp"
 
 
 SECTION "NPC Sprites 2", ROMX

@@ -56,7 +56,7 @@ SpriteSheetPointerTable:
 	overworld_sprite FisherSprite, 12           ; SPRITE_FISHER
 	overworld_sprite KogaSprite, 12             ; SPRITE_KOGA
 	overworld_sprite GuardSprite, 12            ; SPRITE_GUARD
-	overworld_sprite GuardSprite, 12            ; SPRITE_UNUSED_GUARD
+	overworld_sprite MewSprite, 12           	; SPRITE_MEW
 	overworld_sprite MomSprite, 12              ; SPRITE_MOM
 	overworld_sprite BaldingGuySprite, 12       ; SPRITE_BALDING_GUY
 	overworld_sprite LittleBoySprite, 12        ; SPRITE_LITTLE_BOY
@@ -79,5 +79,4 @@ SpriteSheetPointerTable:
 	overworld_sprite GamblerAsleepSprite, 4     ; SPRITE_UNUSED_GAMBLER_ASLEEP_1
 	overworld_sprite GamblerAsleepSprite, 4     ; SPRITE_UNUSED_GAMBLER_ASLEEP_2
 	overworld_sprite GamblerAsleepSprite, 4     ; SPRITE_GAMBLER_ASLEEP
-	overworld_sprite MewSprite, 12           	; SPRITE_MEW
 	assert_table_length NUM_SPRITES

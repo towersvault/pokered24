@@ -455,8 +455,8 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x31: SPRITE_GUARD ($30)
 	db SPR_PAL_BLUE
 
-	; 0x32: $32
-	db SPR_PAL_RANDOM
+	; 0x32: SPRITE_MEW
+	db SPR_PAL_PURPLE
 
 	; 0x33: SPRITE_MOM
 	db SPR_PAL_ORANGE
@@ -523,9 +523,6 @@ SpritePaletteAssignments: ; Characters on the overworld
 
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
-
-	; 0x49: SPRITE_MEW
-	db SPR_PAL_PURPLE
 
 	assert_table_length NUM_SPRITES
 

@@ -380,6 +380,7 @@ INCLUDE "data/trainers/special_moves.asm"
 INCLUDE "data/trainers/parties.asm"
 
 INCLUDE "text/tmhm_names.asm"
+tmhmNamesEnd:
 
 SECTION "Itemfinder 2", ROMX
 

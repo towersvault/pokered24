@@ -149,6 +149,7 @@ DisplayListMenuIDLoop::
 	ld [wd0b5], a
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;joenote need to load the proper bank for TM/HM
+	cp HM01
 	ld a, BANK(ItemNames)
 	ld [wPredefBank], a
 	jr c, .go_get_name

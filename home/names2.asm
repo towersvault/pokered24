@@ -27,8 +27,16 @@ GetName::
 	pop bc
 	jr nz, .notMachine
 	cp HM01
-	jp nc, GetMachineName
+	;jp nc, GetMachineName	;joenote - function removed. Handle list-based tm & hm names here.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;joenote - do some stuff if the item is a machine
+	jr c, .notMachine
+	sub (HM01 - 1)	;need to shift things because tm and hm constants are offset by +$C3 from the first item constant
+	ld [wd0b5], a
+	ld a, TMHM_NAME	
+	ld [wNameListType], a
 .notMachine
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ldh a, [hLoadedROMBank]
 	push af
 	push hl
@@ -87,14 +95,19 @@ GetName::
 	ld bc, NAME_BUFFER_LENGTH
 	call CopyData
 .gotPtr
-	ld a, e
-	ld [wUnusedCF8D], a
-	ld a, d
-	ld [wUnusedCF8D + 1], a
+	; ld a, e
+	; ld [wUnusedCF8D], a
+	; ld a, d
+	; ld [wUnusedCF8D + 1], a
+	ld a, [wd11e]
+	cp HM01
+	jr c, .notMachine2
+	ld a, ITEM_NAME	;this needs to be reset because machines can be in the same listings as items	
+	ld [wNameListType], a
+.notMachine2
 	pop de
 	pop bc
 	pop hl
 	pop af
-	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	call BankswitchCommon
 	ret

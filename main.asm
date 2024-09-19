@@ -379,6 +379,7 @@ INCLUDE "engine/battle/read_trainer_party.asm"
 INCLUDE "data/trainers/special_moves.asm"
 INCLUDE "data/trainers/parties.asm"
 
+INCLUDE "text/tmhm_names.asm"
 
 SECTION "Itemfinder 2", ROMX
 

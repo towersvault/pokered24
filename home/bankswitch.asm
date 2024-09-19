@@ -16,6 +16,11 @@ BankswitchBack::
 	ld [MBC1RomBank], a
 	ret
 
+BankswitchCommon::
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+	ret
+
 Bankswitch::
 ; self-contained bankswitch, use this when not in the home bank
 ; switches to the bank in b

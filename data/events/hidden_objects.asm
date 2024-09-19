@@ -220,6 +220,7 @@ OaksLabHiddenObjects:
 
 ViridianPokecenterHiddenObjects:
 	hidden_object  0,  4, SPRITE_FACING_LEFT, PrintBenchGuyText
+	hidden_object 13,  3, SPRITE_FACING_UP, OpenPokemonCenterPC
 	db -1 ; end
 
 ViridianMartHiddenObjects:

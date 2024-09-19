@@ -67,7 +67,7 @@ ViridianMart_TextPointers:
 	dw ViridianMartYoungsterText
 	dw ViridianMartCooltrainerMText
 	dw ViridianCityFishingGuruText
-	const_def 4
+	const_def 5
 	dw_const ViridianMartClerkYouCameFromPalletTownText, TEXT_VIRIDIANMART_CLERK_YOU_CAME_FROM_PALLET_TOWN
 	dw_const ViridianMartClerkParcelQuestText,           TEXT_VIRIDIANMART_CLERK_PARCEL_QUEST
 

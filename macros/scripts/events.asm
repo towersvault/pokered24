@@ -138,6 +138,17 @@ MACRO CheckAndResetEventA
 ENDM
 
 
+MACRO CheckAndSetEventReuseHL
+	IF event_byte != ((\1) / 8)
+		DEF event_byte = ((\1) / 8)
+		ld hl, wEventFlags + event_byte
+	ENDC
+
+	bit (\1) % 8, [hl]
+	set (\1) % 8, [hl]
+ENDM
+
+
 ;\1 = event index
 MACRO SetEvent
 	DEF event_byte = ((\1) / 8)

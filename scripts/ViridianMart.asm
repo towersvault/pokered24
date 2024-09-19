@@ -105,6 +105,11 @@ ViridianCityFishingGuruText:
 	ld a, [wd728]
 	bit 3, a ; got old rod?
 	jr nz, .got_old_rod
+	CheckEvent EVENT_OAK_GOT_PARCEL
+	jp nz, .parcelDelivered
+	ld hl, .FishingOaksParcelText
+	jp .print_text
+.parcelDelivered
 	ld hl, .DoYouLikeToFishText
 	call PrintText
 	call YesNoChoice
@@ -129,6 +134,10 @@ ViridianCityFishingGuruText:
 .print_text
 	call PrintText
 	jp TextScriptEnd
+
+.FishingOaksParcelText:
+	text_far _ViridianOldRodHouseFishingGuruOaksParcelText
+	text_end
 
 .DoYouLikeToFishText:
 	text_far _ViridianOldRodHouseFishingGuruDoYouLikeToFishText

@@ -32,6 +32,19 @@ _ViridianMartCooltrainerMText::
 	cont "in stock."
 	done
 
+_ViridianOldRodHouseFishingGuruOaksParcelText::
+	text "I'm the FISHING"
+	line "GURU!"
+
+	para "I simply looove"
+	line "fishing!"
+
+	para "It seems you have"
+	line "an important"
+	cont "mission to take"
+	cont "care of first!"
+	done
+
 _ViridianOldRodHouseFishingGuruDoYouLikeToFishText::
 	text "I'm the FISHING"
 	line "GURU!"

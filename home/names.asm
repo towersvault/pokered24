@@ -37,13 +37,12 @@ GetItemName::
 	ld a, ITEM_NAME
 	ld [wNameListType], a
 	ld a, BANK(ItemNames)
+	jr .Finish
+.Machine
+	ld a, BANK(tmhmNames)
+.Finish
 	ld [wPredefBank], a
 	call GetName
-	jr .Finish
-
-.Machine
-	call GetMachineName
-.Finish
 	ld de, wcd6d ; pointer to where item name is stored in RAM
 	pop bc
 	pop hl

@@ -6201,11 +6201,22 @@ LoadEnemyMonData:
 	jr nz, .storeDVs
 	ld a, [wIsInBattle]
 	cp $2 ; is it a trainer battle?
+	jr nz, .notTrainer
 ; fixed DVs for trainer mon
+; @towersvault
+; If the game is on hard, force shiny-like DVs
+	ld a, [wDifficulty]
+	and a
+; Normal Difficulty DVs
 	ld a, ATKDEFDV_TRAINER
 	ld b, SPDSPCDV_TRAINER
 	jr z, .storeDVs
+; Hard Difficulty DVs
+	ld a, ATKDEFDVHARD_TRAINER
+	ld b, SPDSPCDVHARD_TRAINER
+	jr .storeDVs
 ; random DVs for wild mon
+.notTrainer
 	call BattleRandom
 	ld b, a
 	call BattleRandom

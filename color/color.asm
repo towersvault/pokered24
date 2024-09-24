@@ -475,6 +475,20 @@ SetPal_TitleScreen:
 	ld e, 2
 	farcall LoadSGBPalette
 
+; @towersvault
+; New version logo colors
+	ld d, PAL_COLOR1
+	ld e, 4
+	farcall LoadSGBPalette
+
+	ld d, PAL_COLOR2
+	ld e, 5
+	farcall LoadSGBPalette
+
+	ld d, PAL_COLOR3
+	ld e, 6
+	farcall LoadSGBPalette
+
 	ld d, PAL_BLACK
 	ld e, 3
 	farcall LoadSGBPalette
@@ -503,7 +517,29 @@ ENDC
 	jr nz, .logo2Loop
 
 	; "Red/Blue Version"
-	ld bc, 20
+
+	; "Color" Version text
+	ld bc, 8
+	ld a, 4
+	call FillMemory
+
+	ld bc, 1
+	ld a, 4
+	call FillMemory
+
+	ld bc, 1
+	ld a, 5
+	call FillMemory
+
+	ld bc, 1
+	ld a, 6
+	call FillMemory
+
+	ld bc, 1
+	ld a, 6
+	call FillMemory
+
+	ld bc, 8
 	ld a, 2
 	call FillMemory
 

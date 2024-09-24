@@ -30,6 +30,10 @@ DEF PALETTE_SIZE EQU NUM_PAL_COLORS * PAL_COLOR_SIZE
 	const SET_PAL_NAMING_SCREEN        ; $0F
 	const SET_PAL_BATTLE_AFTER_BLACK   ; $10
 
+	const SET_PAL_COLOR1			   ; $11
+	const SET_PAL_COLOR2			   ; $12
+	const SET_PAL_COLOR3			   ; $13
+
 DEF SET_PAL_PARTY_MENU_HP_BARS EQU $fc
 DEF SET_PAL_DEFAULT EQU $ff
 
@@ -274,4 +278,7 @@ IF GEN_2_GRAPHICS
 	const PAL_LANCE         ; $EA
 	const PAL_HERO          ; $EB
 ENDC
+	const PAL_COLOR1	    ; $EC
+	const PAL_COLOR2	    ; $ED
+	const PAL_COLOR3        ; $EF
 DEF NUM_SGB_PALS EQU const_value

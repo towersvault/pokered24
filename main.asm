@@ -333,7 +333,6 @@ INCLUDE "engine/events/hidden_objects/pokecenter_pc.asm"
 SECTION "Battle Engine 11", ROMX
 
 INCLUDE "engine/battle/decrement_pp.asm"
-INCLUDE "gfx/version.asm"
 
 
 SECTION "bank1C", ROMX
@@ -381,6 +380,9 @@ INCLUDE "data/trainers/parties.asm"
 
 INCLUDE "text/tmhm_names.asm"
 tmhmNamesEnd:
+
+; Moved from "Battle Engine 11"
+INCLUDE "gfx/version.asm"
 
 SECTION "Itemfinder 2", ROMX
 
